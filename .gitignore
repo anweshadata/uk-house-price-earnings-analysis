@@ -1,0 +1,16 @@
+# Large / regenerable data files — see README.md for how to rebuild these
+# from the scripts in scripts/ after downloading the source files.
+*.sqlite
+*.sqlite3
+pp-complete.csv
+data/pp-complete.csv
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+
+# Leftover run logs / checkpoints
+scripts/load_log.txt
+*.log
