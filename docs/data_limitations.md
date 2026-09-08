@@ -138,12 +138,22 @@ LGR). No case was force-matched or guessed.
 ASHE suppresses (`'x'` in the source spreadsheets, read here as blank/NaN)
 median or mean pay figures where the underlying sample size for a local
 authority/year is too small for a reliable estimate, or for disclosure
-control. In the combined ASHE extract this affects **197 of 3,917 rows
-(5.0%)**. These rows are kept in the joined table with a blank
-`median_pay`/`price_to_earnings_ratio` rather than dropped, so the price
-data for that district/year is still usable even though no ratio can be
-computed. Do not fill these blanks with an interpolated or estimated
-value without clearly labelling it as an estimate.
+control. Median and mean are suppressed **independently**, against
+separate ONS sample-size thresholds, so a row can have one blank and not
+the other. In the combined ASHE extract (3,917 rows):
+
+| Column | Blank rows | % of rows |
+|---|---|---|
+| `median_pay` | 197 | 5.0% |
+| `mean_pay` | 93 | 2.4% |
+| Both blank | 41 | 1.0% |
+| `mean_pay` blank, `median_pay` present | 52 | 1.3% |
+
+These rows are kept in the joined table with a blank
+`median_pay`/`mean_pay`/`price_to_earnings_ratio` rather than dropped, so
+the price data for that district/year is still usable even though no ratio
+can be computed. Do not fill these blanks with an interpolated or
+estimated value without clearly labelling it as an estimate.
 
 ## 7. What "district" means here
 
