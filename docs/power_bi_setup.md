@@ -31,8 +31,11 @@ under-represent certain local authorities (smaller/rural ones especially,
 since those are the ones ASHE tends to suppress) without any indication in
 the dashboard that this happened.
 
-A DAX measure to check the blank counts against the documented figures as
-a sanity check after any data refresh:
+These aren't a required part of the dashboard - they were used once, as a
+one-off sanity check, to confirm the imported row/blank counts matched the
+documented figures below, then removed from the working file. Recreate
+them temporarily (as Card visuals) any time you want to re-verify after a
+data refresh, using this DAX:
 
 ```dax
 Total Rows = COUNTROWS(price_vs_earnings_by_la_year)
