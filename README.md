@@ -86,4 +86,8 @@ sql/                         the SQL query used to compute median prices
 ## Status
 
 Data pipeline is complete. A Power BI dashboard built on
-`price_vs_earnings_by_la_year.csv` is planned next.
+`price_vs_earnings_by_la_year.csv` is in progress - see
+[`docs/power_bi_setup.md`](docs/power_bi_setup.md) for the column type
+corrections and null-handling approach used when importing the data. The
+`.pbix` file itself isn't committed to this repo (see `.gitignore`); it's
+built locally by importing the CSV per those setup notes.
