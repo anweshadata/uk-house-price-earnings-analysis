@@ -18,7 +18,7 @@ columns won't work correctly:
 | `transaction_count` | Whole Number | |
 | `median_pay`, `mean_pay` | Fixed Decimal Number | Currency, same reasoning as price columns |
 | `number_of_jobs_thousands` | Whole Number | ONS publishes this already rounded to the nearest thousand - the raw source has no decimal places, confirmed by checking the source workbooks directly |
-| `price_to_earnings_ratio` | Fixed Decimal Number | |
+| `price_to_earnings_ratio` | Decimal Number | Not Fixed Decimal — that type is internally "Currency" in Power Query and caused a stray £ symbol on chart axes, since this is a unitless ratio, not money |
 
 ## 2. Nulls: kept intentionally, not filtered
 
@@ -55,9 +55,7 @@ Pay Count = 197; Blank Mean Pay Count = 93.
 Rather than leaving the blanks unexplained, each visual that touches these
 columns should surface the gap:
 
-- **Map**: blank `price_to_earnings_ratio` gets a distinct grey fill
-  (rather than defaulting to white/transparent) plus a legend note:
-  "Grey = earnings data suppressed by ONS (small sample size)."
+- **Treemap** (replaces originally-planned Shape Map): attempted to load a custom LA boundary GeoJSON from the ONS Open Geography Portal for a proper choropleth map, but the file was too large for Power BIs custom Shape Map upload (~10MB practical limit; full-detail UK boundary files run far larger). Simplified via Mapshaper.org to 10% detail and re-exported as TopoJSON, but Power BIs file picker still failed to complete the upload (silent failure, no error message, a UI bug, not a data/format issue). Replaced with a Treemap instead: box size = `transaction_count`, colour = `price_to_earnings_ratio` via a 3-point gradient (green to yellow at the fixed national-average center value to red), with blanks set to a distinct grey fill, same "suppressed data" convention as originally planned for the map.
 - **Line/combo charts over time**: Power BI shows a natural gap/break at
   missing years by default - add a small caption noting this rather than
   leaving it unexplained.
