@@ -5,10 +5,6 @@
 pp-complete.csv
 data/pp-complete.csv
 
-# Power BI dashboard file — built locally from data/processed/price_vs_earnings_by_la_year.csv,
-# see docs/power_bi_setup.md for the column type and null-handling setup steps.
-*.pbix
-
 # OS / editor junk
 .DS_Store
 Thumbs.db
